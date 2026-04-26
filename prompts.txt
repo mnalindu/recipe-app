@@ -1,0 +1,26 @@
+The aim 01: Set up Vue 3 project with TypeScript and Tailwind CSS
+Actual prompt: How do I create a Vue 3 project with TypeScript, Pinia, Vue Router and Tailwind CSS v3 using Vite?
+
+The aim 02: Define strict TypeScript interfaces for DummyJSON recipes API
+Actual prompt: Create a TypeScript interface for the DummyJSON recipes API response including all fields like ingredients, instructions, cuisine, difficulty, mealType, rating
+
+The aim 03: Create a Pinia store for managing recipe state with filtering
+Actual prompt: Create a Pinia store in Vue 3 with TypeScript that fetches recipes from dummyjson.com/recipes, supports search filtering by name and cuisine, and filters by difficulty
+
+The aim 04: Build a responsive recipe card component
+Actual prompt: Create a Vue 3 TypeScript component RecipeCard.vue that displays a recipe image, name, cuisine badge, rating, cook time, servings and difficulty with Tailwind CSS hover effects
+
+The aim 05: Build a recipe detail modal
+Actual prompt: Create a Vue 3 modal component that shows full recipe details including ingredients list, step by step instructions, calories, servings and tags using Tailwind CSS
+
+The aim 06: Implement JWT authentication using DummyJSON
+Actual prompt: How do I implement JWT login using the DummyJSON /auth/login endpoint in a Pinia store, storing the token in localStorage and managing login/logout state in Vue 3?
+
+The aim 07: Add bookmark feature with localStorage persistence
+Actual prompt: Create a bookmarks feature in Pinia that lets users save recipes, persists to localStorage, and shows saved recipes on a separate BookmarksView page
+
+The aim 08: Implement dark mode with Tailwind CSS
+Actual prompt: How do I implement a dark mode toggle in Vue 3 with Tailwind CSS darkMode: class strategy, persisting the preference in localStorage?
+
+The aim 09: Add dynamic routing for recipe detail pages
+Actual prompt: Set up Vue Router dynamic routes for /recipe/:id in Vue 3 that loads a full recipe detail page based on the recipe ID from the DummyJSON API
