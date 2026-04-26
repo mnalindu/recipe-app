@@ -1,17 +1,51 @@
 <template>
-  <nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5"
-    style="background: rgba(15,15,15,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(200,169,110,0.2);">
-    <RouterLink to="/" class="flex items-center gap-3">
-      <span class="font-display text-2xl font-bold" style="color:#c8a96e;">SAVEUR</span>
-      <span class="text-xs tracking-[0.3em] uppercase" style="color:#888; padding-top:2px;">Recipe Book</span>
-    </RouterLink>
-    <div class="flex items-center gap-8">
-      <RouterLink to="/" class="text-sm tracking-widest uppercase hover:text-amber-400 transition-colors" style="color:#aaa;">
-        Recipes
+  <nav class="sticky top-0 z-50 bg-amber-50 dark:bg-zinc-900 border-b-2 border-amber-900 dark:border-amber-700">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <RouterLink to="/" class="flex items-center gap-2">
+        <span class="text-3xl">🍳</span>
+        <span class="font-serif text-2xl font-bold text-amber-900 dark:text-amber-400 tracking-tight">
+          RecipeBook
+        </span>
       </RouterLink>
-      <span class="text-sm tracking-widest uppercase" style="color:#c8a96e; border:1px solid #c8a96e; padding: 6px 18px; cursor:pointer;">
-        Explore
-      </span>
+
+      <div class="flex items-center gap-4">
+        <RouterLink to="/" class="font-medium text-amber-800 dark:text-amber-400 hover:text-amber-600 transition-colors">
+          Home
+        </RouterLink>
+        <RouterLink to="/bookmarks" class="font-medium text-amber-800 dark:text-amber-400 hover:text-amber-600 transition-colors">
+          🔖 Bookmarks
+        </RouterLink>
+
+        <!-- Dark Mode Toggle -->
+        <button @click="store.toggleDarkMode()"
+          class="w-10 h-10 rounded-full bg-amber-100 dark:bg-zinc-700 flex items-center justify-center text-lg hover:scale-110 transition">
+          {{ store.isDarkMode ? '☀️' : '🌙' }}
+        </button>
+
+        <!-- Auth -->
+        <button v-if="!store.isLoggedIn" @click="showLogin = true"
+          class="bg-amber-900 dark:bg-amber-700 text-amber-50 px-4 py-2 rounded-xl text-sm font-semibold hover:bg-amber-800 transition">
+          Sign In
+        </button>
+        <div v-else class="flex items-center gap-2">
+          <span class="text-sm text-amber-700 dark:text-amber-400 font-medium">👤 {{ store.currentUser }}</span>
+          <button @click="store.logout()"
+            class="text-sm text-red-500 hover:text-red-700 font-medium transition">
+            Logout
+          </button>
+        </div>
+      </div>
     </div>
   </nav>
+
+  <LoginModal v-if="showLogin" @close="showLogin = false" />
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useRecipeStore } from '../stores/recipeStore'
+import LoginModal from './LoginModal.vue'
+
+const store = useRecipeStore()
+const showLogin = ref(false)
+</script>
