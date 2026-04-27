@@ -2,9 +2,10 @@
   <nav class="sticky top-0 z-50 bg-amber-50 dark:bg-zinc-900 border-b-2 border-amber-900 dark:border-amber-700">
     <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
       <RouterLink to="/" class="flex items-center gap-2">
-        <span class="text-3xl">🍳</span>
+        
+        <span class="text-3xl">🍽️</span>
         <span class="font-serif text-2xl font-bold text-amber-900 dark:text-amber-400 tracking-tight">
-          RecipeBook
+          Quick Bites
         </span>
       </RouterLink>
 

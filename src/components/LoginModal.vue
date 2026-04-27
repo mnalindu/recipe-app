@@ -3,14 +3,14 @@
     @click.self="$emit('close')">
     <div class="bg-white dark:bg-zinc-900 rounded-3xl max-w-md w-full p-8 shadow-2xl">
       <h2 class="font-serif text-3xl font-bold text-amber-900 dark:text-amber-400 mb-2">Welcome Back</h2>
-      <p class="text-gray-500 mb-6 text-sm">Sign in with your DummyJSON account</p>
+      <p class="text-gray-500 mb-6 text-sm">Enter your details to get started</p>
 
       <div v-if="error" class="bg-red-50 text-red-600 rounded-xl p-3 mb-4 text-sm">{{ error }}</div>
 
       <div class="space-y-4">
-        <input v-model="username" type="text" placeholder="Username (try: emilys)"
+        <input v-model="username" type="text" placeholder="Username or Email"
           class="w-full px-4 py-3 rounded-xl border-2 border-amber-200 focus:border-amber-500 outline-none bg-amber-50 dark:bg-zinc-800 dark:text-white dark:border-zinc-600" />
-        <input v-model="password" type="password" placeholder="Password (try: emilyspass)"
+        <input v-model="password" type="password" placeholder="Password"
           class="w-full px-4 py-3 rounded-xl border-2 border-amber-200 focus:border-amber-500 outline-none bg-amber-50 dark:bg-zinc-800 dark:text-white dark:border-zinc-600" />
         <button @click="handleLogin" :disabled="loading"
           class="w-full bg-amber-900 text-amber-50 py-3 rounded-xl font-semibold hover:bg-amber-800 transition disabled:opacity-50">
@@ -22,9 +22,7 @@
         </button>
       </div>
 
-      <p class="text-xs text-gray-400 mt-4 text-center">
-        Hint: username = <strong>emilys</strong> / password = <strong>emilyspass</strong>
-      </p>
+      
     </div>
   </div>
 </template>

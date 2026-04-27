@@ -87,6 +87,18 @@
       :recipe="selectedRecipe"
       @close="selectedRecipe = null"
     />
+    <!-- Footer -->
+    <footer class="bg-amber-50 dark:bg-zinc-900 border-t border-amber-200 dark:border-zinc-700 mt-12 py-8">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <div class="flex items-center justify-center gap-2 mb-2">
+          <span class="text-xl">🍽️</span>
+          <span class="font-serif text-lg font-bold text-amber-900 dark:text-amber-400">Quick Bites</span>
+        </div>
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          © 2026 Quick Bites Recipe App. Crafted with code and ❤️
+        </p>
+      </div>
+    </footer>
   </main>
 </template>
 
