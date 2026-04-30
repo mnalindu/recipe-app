@@ -1,56 +1,72 @@
 <template>
   <div
-    @click="$emit('select', recipe)"
-    class="group cursor-pointer relative overflow-hidden"
-    style="background:#0f0f0f; aspect-ratio: 3/4;"
+    class="group cursor-pointer bg-zinc-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-zinc-700"
   >
     <!-- Image -->
-    <img
-      :src="recipe.image"
-      :alt="recipe.name"
-      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-    />
-    <!-- Dark overlay -->
-    <div class="absolute inset-0 transition-opacity duration-500"
-      style="background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);">
-    </div>
-    <!-- Hover overlay -->
-    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-      style="background: rgba(200,169,110,0.1);">
-    </div>
-
-    <!-- Top badges -->
-    <div class="absolute top-4 left-4 right-4 flex justify-between items-start">
-      <span class="text-xs tracking-widest uppercase px-3 py-1"
-        style="background:rgba(200,169,110,0.9); color:#0f0f0f; font-weight:500;">
-        {{ recipe.cuisine }}
-      </span>
-      <span class="text-xs px-2 py-1" style="background:rgba(0,0,0,0.7); color:#c8a96e;">
-        ★ {{ recipe.rating }}
-      </span>
+    <div @click="$emit('select', recipe)" class="relative overflow-hidden h-52">
+      <img
+        :src="recipe.image"
+        :alt="recipe.name"
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
+      <!-- Difficulty Badge -->
+      <div :class="{
+        'bg-green-400 text-white': recipe.difficulty === 'Easy',
+        'bg-yellow-400 text-white': recipe.difficulty === 'Medium',
+        'bg-red-400 text-white': recipe.difficulty === 'Hard'
+      }" class="absolute top-3 left-3 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide">
+        {{ recipe.difficulty }}
+      </div>
+      <!-- Rating Badge -->
+      <div class="absolute top-3 right-3 bg-zinc-900 rounded-full px-3 py-1 text-xs font-bold text-white flex items-center gap-1 shadow">
+        ⭐ {{ recipe.rating }}
+      </div>
     </div>
 
-    <!-- Bottom content -->
-    <div class="absolute bottom-0 left-0 right-0 p-5">
-      <p class="text-xs tracking-widest uppercase mb-2" style="color:#c8a96e;">
-        {{ recipe.mealType.join(' · ') }}
-      </p>
-      <h3 class="font-display text-xl font-bold leading-tight mb-3" style="color:#f5f0e8;">
+    <!-- Content -->
+    <div @click="$emit('select', recipe)" class="p-4">
+      <h3 class="font-bold text-white text-lg mb-3 line-clamp-2 leading-snug">
         {{ recipe.name }}
       </h3>
-      <div class="flex items-center gap-4 text-xs" style="color:#888;">
-        <span>⏱ {{ recipe.prepTimeMinutes + recipe.cookTimeMinutes }}min</span>
-        <span>👤 {{ recipe.servings }}</span>
-        <span :style="{ color: recipe.difficulty === 'Easy' ? '#7cb98a' : recipe.difficulty === 'Medium' ? '#c8a96e' : '#e07070' }">
-          {{ recipe.difficulty }}
+
+      <!-- Stats Row -->
+      <div class="flex items-center gap-4 text-sm text-gray-400 mb-3">
+        <span class="flex items-center gap-1">
+          🕐 {{ recipe.prepTimeMinutes + recipe.cookTimeMinutes }}m
+        </span>
+        <span class="flex items-center gap-1">
+          🔥 {{ recipe.caloriesPerServing }} cal
+        </span>
+        <span class="flex items-center gap-1">
+          👤 {{ recipe.servings }} serving
         </span>
       </div>
+
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-2">
+        <span
+          v-for="tag in recipe.tags.slice(0, 3)" :key="tag"
+          class="border border-zinc-600 text-gray-300 text-xs px-3 py-1 rounded-full"
+        >
+          {{ tag }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Bookmark -->
+    <div class="px-4 pb-4 flex justify-end">
+      <button @click.stop="store.toggleBookmark(recipe)"
+        class="text-xl hover:scale-125 transition-transform">
+        {{ store.isBookmarked(recipe.id) ? '🔖' : '🤍' }}
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Recipe } from '../types/recipe'
+import { useRecipeStore } from '../stores/recipeStore'
 defineProps<{ recipe: Recipe }>()
 defineEmits<{ select: [recipe: Recipe] }>()
+const store = useRecipeStore()
 </script>
