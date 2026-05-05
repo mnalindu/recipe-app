@@ -34,3 +34,6 @@ npm run dev
 
 ## GitHub
 https://github.com/mnalindu/recipe-app
+
+## Live Demo
+https://quickbites-food.netlify.app
